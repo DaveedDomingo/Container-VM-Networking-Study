@@ -1,0 +1,29 @@
+
+# for an experiment run with configurations
+# 1. bare to bare
+# 2. container to container
+# 3. vm to vm
+# 4. container on vm to container to vm
+
+# Run bare to bare
+ - go to each server node and start server
+ - go to client node and run
+ - copy results back
+ - go to server node and end server
+
+# run container to container
+ - go to server node and start docker and image
+ - go to client node and start docker and image
+ - copy results back
+ - go to server node and end docker and image
+ - go to client node and stop docker and image
+
+ # to vm  to vm
+ - go to server node and start vm, and start server
+ - go to client node and start vm, and start client
+ - copy results back
+ - go to server node and end vm
+ - go to client node and stop vm
+
+# to container on vm to container on vm
+ -
