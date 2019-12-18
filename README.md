@@ -126,12 +126,36 @@ cd docker
 ```
 
 #### Setting up Overlay network
+1. On the primary node initiate a docker swarm where `$PUBLIC_IP` is the public ip address of the node
+```
+docker swarm init --advertise-addr $PUBLIC_IP
+```
+2. Copy the output of the command and run it on the secondary node to add it to the docker swarm
+3. On the primary node create an attachable overlay network
+```
+docker network create -d overlay --attachable overnet
+```
 
 #### Launching Sockperf TCP Server Service
-
+On the primary node, create a sockper-server service and pin it to the remote node. 
+```
+docker service create --constraint node.role==worker --network overnet --name sockperf-server sockperf server --tcp
+```
 #### Running Sockperf TCP Throughput Benchmark
+On the secondary node inspect the overlay network IP that was it was assigned
+```
+docker network inspect overnet
+```
+On the primary node run a sockperf container running the benchmark replacing `$MESS_SIZE` with the message size you want to run with benchmark with (in bytes) and replacing `$REMOTE_IP` with overlay IP address retrieved from the previous step.
+```
+docker run --rm --network overnet --name sockperf-client sockperf throughput --tcp -i $REMOTE_IP -p 11111 -t 30 --msg-size=$MESS_SIZE
+```
 
 #### Stopping Sockperf TCP Server Service
+On the primary node, stop the Sockperf TCP Service using the `service rm` command
+```
+docker service rm sockperf-server
+```
 
 #### Launching Sockperf UDP Server Service
 
