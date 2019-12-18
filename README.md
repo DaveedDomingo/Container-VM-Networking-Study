@@ -114,12 +114,15 @@ sudo apt-get install docker.io
 ```
 
 #### Generating Sockperf Docker Images
-On each node ensure, the sockperf repo is cloned and the source is compiled.
+On each node ensure the sockperf repo is cloned and the source is compiled.
 1. Navigate to the docker folder
 ```
 cd docker
 ```
-2. 
+2. Generate the Sockperf docker image using the `gen_sockperf.sh` script. This will package the sockperf executable within a docker image to be used. The docker image is automatically added to the list of available docker images in docker
+```
+./gen_sockperf.sh
+```
 
 #### Setting up Overlay network
 
