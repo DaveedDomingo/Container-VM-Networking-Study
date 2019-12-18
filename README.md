@@ -67,8 +67,8 @@ sockperf-clone
 ```
 sockperf-compile
 ```
-
-Now on the second node,  navigate to the sockperf repo and launch the Sockperf server. This will host the server on the default port `11111`
+#### Running Sockperf TCP Benchmark
+On the second node,  navigate to the sockperf repo and launch the Sockperf server. This will host the server on the default port `11111`
 ```
 node-1$ ./sockperf server --tcp 
 ```
@@ -78,6 +78,16 @@ Now on the first node, navigate to the sockperf repo and run the Sockperf benchm
 node-0$ ./sockperf throughput --tcp -i $NODE_1 -p 11111 -t 30 --msg-size=$MESS_SIZE
 ```
 
+#### Running Sockperf UDP Benchmark
+On the second node,  navigate to the sockperf repo and launch the Sockperf server. This will host the server on the default port `11111` and set the connection to UDP by default
+```
+node-1$ ./sockperf server 
+```
+
+Now on the first node, navigate to the sockperf repo and run the Sockperf benchmark replacing `$NODE_1` with the domain name of the second node and `$MESS_SIZE` with the message size you want to run the benchmark with (in bytes)
+```
+node-0$ ./sockperf throughput -i $NODE_1 -p 11111 -t 30 --msg-size=$MESS_SIZE
+```
 
 #### Docker Container Configuration
 
