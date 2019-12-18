@@ -104,6 +104,38 @@ node-0$ ./sockperf throughput -i $NODE_1 -p 11111 -t 30 --msg-size=$MESS_SIZE
 
 #### Docker Container Configuration
 
+### Installing Docker
+Install docker via apt get 
+```
+sudo apt-get update
+```
+```
+sudo apt-get install docker.io 
+```
+
+#### Generating Sockperf Docker Images
+On each node ensure, the sockperf repo is cloned and the source is compiled.
+1. Navigate to the docker folder
+```
+cd docker
+```
+2. 
+
+#### Setting up Overlay network
+
+#### Launching Sockperf TCP Server Service
+
+#### Running Sockperf TCP Throughput Benchmark
+
+#### Stopping Sockperf TCP Server Service
+
+#### Launching Sockperf UDP Server Service
+
+#### Running Sockperf UDP Throughput Benchmark
+
+#### Stopping Sockperf UDP Server Service
+
+
 #### VM Configuration
 
 #### VM+Container Configuration
