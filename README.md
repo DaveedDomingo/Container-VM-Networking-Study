@@ -158,10 +158,26 @@ docker service rm sockperf-server
 ```
 
 #### Launching Sockperf UDP Server Service
+On the primary node, create a sockper-server service and pin it to the remote node. 
+```
+docker service create --constraint node.role==worker --network overnet --name sockperf-server sockperf server
+```
 
 #### Running Sockperf UDP Throughput Benchmark
+On the secondary node inspect the overlay network IP that was it was assigned
+```
+docker network inspect overnet
+```
+On the primary node run a sockperf container running the benchmark replacing `$MESS_SIZE` with the message size you want to run with benchmark with (in bytes) and replacing `$REMOTE_IP` with overlay IP address retrieved from the previous step.
+```
+docker run --rm --network overnet --name sockperf-client sockperf throughput -i $REMOTE_IP -p 11111 -t 30 --msg-size=$MESS_SIZE
+```
 
 #### Stopping Sockperf UDP Server Service
+On the primary node, stop the Sockperf TCP Service using the `service rm` command
+```
+docker service rm sockperf-server
+```
 
 
 #### VM Configuration
