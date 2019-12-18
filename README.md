@@ -182,4 +182,22 @@ docker service rm sockperf-server
 
 #### VM Configuration
 
+#### Creating Virtual Machines
+Connect to each node using X11 forwarding. 
+1. On each node, ensure the nessecary KVM packages are installed
+```
+ sudo apt-get install qemu-kvm libvirt-bin bridge-utils virt-manager
+```
+2. Download a copy of the Ubuntu 18.04 iso 
+```
+wget http://releases.ubuntu.com/18.04/ubuntu-18.04.3-desktop-amd64.iso
+```
+3. Launch virt-manager
+```
+sudo virt-manager
+```
+4. Install a new virtual machine using the downloaded Ubuntu iso as the installation disk
+5. Configure the virtual machines with the default parameters. 
+6. Let the virtual machine run and complete the installation
+
 #### VM+Container Configuration
