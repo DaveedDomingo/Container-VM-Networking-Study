@@ -40,4 +40,47 @@ netperf-server-start : starts netperf server
 netperf-server-stop : stops netperf server
 
 
-### To-do
+
+#### Setting up Cloudlab Instance
+1. In order to setup cloudlab instance, create a cloud lab profile and copy the source xml configuration from `cloudlab-profiles/cloudlab-profile.xml`
+2. Start a new cloud lab experiment utilizing the new profile you created.
+3. In the end there should be two Cloudlab topology connected to the internet with 1Gbps ethernet and connected to each other by 10Gpbs Infiniband. 
+
+#### Host configuration
+In order to run Sockperf on the host configuration do the following on each node:
+1. Clone the repo and navigate into it
+```
+git clone https://github.com/DaveedDomingo/Container-VM-Networking-Study.git
+```
+```
+cd Container-VM-Networking-Study
+```
+2.  Now source the setvars script to set the necessary aliases to intermediate scripts
+```
+source ./setvars.sh 
+``` 
+3. Clone the Sockperf repo. This will place the repo in the tools folder
+```
+sockperf-clone
+```
+4. Compile the sockperf source 
+```
+sockperf-compile
+```
+
+Now on the second node,  navigate to the sockperf repo and launch the Sockperf server. This will host the server on the default port `11111`
+```
+node-1$ ./sockperf server --tcp 
+```
+
+Now on the first node, navigate to the sockperf repo and run the Sockperf benchmark replacing `$NODE_1` with the domain name of the second node and `$MESS_SIZE` with the message size you want to run the benchmark with (in bytes)
+```
+node-0$ ./sockperf throughput --tcp -i $NODE_1 -p 11111 -t 30 --msg-size=$MESS_SIZE
+```
+
+
+#### Docker Container Configuration
+
+#### VM Configuration
+
+#### VM+Container Configuration
