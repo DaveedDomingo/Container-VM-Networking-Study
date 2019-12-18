@@ -32,13 +32,26 @@ source ./setvars.sh
 remote
 
 ### Aliases
-netperf-clone : clones netperf directory
-netperf-compile : compiles netperf
-netperf-clean : cleans netperf repo
-netperf-run : runs netperf client
-netperf-server-start : starts netperf server
-netperf-server-stop : stops netperf server
+- netperf-clone : clones netperf repo
+- netperf-compile : compiles netperf
+- netperf-clean : cleans netperf repo
+- netperf-run : runs netperf client
+- netperf-server-start : starts netperf server
+- netperf-server-stop : stops netperf server
 
+- sockperf-clone : clones sockperf repo
+- sockperf-compile : compiles sockperf
+- sockperf-clean : cleans sockperf repo
+- sockperf-remove : removes sockperf repo
+
+- qemu-create : created qemu image and installed debian
+- qemu-destroy : destroyes qemu image
+- qemu-mount : mounts qemu image to folder
+- qemu-unmount: unmount qemu image folder
+- qemu-run: runs qemu vm
+- qemu-kill: kills any running qemu instance
+- qemu-passwork: allows to set the root password of qemu vm
+- qemu-help: lists qemu commands
 
 
 #### Setting up Cloudlab Instance
